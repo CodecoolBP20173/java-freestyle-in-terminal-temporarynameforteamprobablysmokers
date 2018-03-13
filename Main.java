@@ -31,6 +31,6 @@ public class Main {
 		String performer = getData.nextLine();
 		System.out.println("Give the category: ");
 		String category = getData.nextLine();
-		System.out.println(title + link + performer + category);
+		System.out.println("Song created in database!");
 	}
 }
