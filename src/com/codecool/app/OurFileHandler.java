@@ -3,7 +3,7 @@ package com.codecool.app;
 import java.io.*;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.TreeMap;
+
 
 public class OurFileHandler {
     private static String path = "/Users/Peter/Documents/codecool/tw1java/java-freestyle-in-terminal-temporarynameforteamprobablysmokers/src/com/codecool/app/musics.txt";

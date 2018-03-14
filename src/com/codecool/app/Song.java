@@ -6,6 +6,9 @@ import java.util.TreeMap;
 public class Song {
     private String title;
     private String  link;
+    private Category category;
+    private int vote;
+
     public static Map<String,Song> objectList = new TreeMap<>();
 
     public Song(String title, String link) {
