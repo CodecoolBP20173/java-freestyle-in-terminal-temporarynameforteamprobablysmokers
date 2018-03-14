@@ -6,15 +6,35 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 public class OurFileHandler {
-    private static String path = "/Users/Peter/Documents/codecool/tw1java/java-freestyle-in-terminal-temporarynameforteamprobablysmokers/src/com/codecool/app/musics.txt";
-    private static File file = new File(path);
+    //private static String path = "/Users/gergelyk89/Documents/codecool/tw1java/java-freestyle-in-terminal-temporarynameforteamprobablysmokers/src/com/codecool/app/musics.txt";
+   // private static File file = new File(path);
 
+    private static final String FILENAME = "music.txt";
+    public static void writer(String stringToTxt) throws FileNotFoundException {
+        BufferedWriter bw = null;
+	FileWriter fw = null;
+	try {
+		String content = stringToTxt;
+		fw = new FileWriter(FILENAME, true);
+		bw = new BufferedWriter(fw);
+		bw.write(content);
+		System.out.println("Done");
+	} catch (IOException e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (bw != null)
+				bw.close();
+			if (fw != null)
+				fw.close();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
 
-
-    public static void writer(Song song) throws FileNotFoundException {
-        PrintWriter writer = new PrintWriter(file);
-        writer.println(song.getTitle() + "," + song.getLink());
-        writer.close();
+	//PrintWriter writer = new PrintWriter(file);
+        //writer.println(song.getTitle() + "," + song.getLink());
+        //writer.close();
     }
 
     public static Map reader() throws FileNotFoundException {
