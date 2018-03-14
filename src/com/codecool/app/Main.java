@@ -22,6 +22,12 @@ public class Main {
         System.out.println("Song created in database!");
     }
 
+    public static void playChosen() throws FileNotFoundException {
+        Scanner getData = new Scanner(System.in);
+        int chosen = getData.nextInt();
+        Mediaplayer.main(OurFileHandler.reader()[chosen]);
+    }
+
     public static void main(String[] args) throws FileNotFoundException {
         OurFileHandler.writer(new Song("babydonthurtme", "www.www", "britney"));
         System.out.println("dizajn");
@@ -32,8 +38,10 @@ public class Main {
         if (c==1) {
             System.out.println("belefut");
             for (int i=0; i<OurFileHandler.reader().length; i++) {
-                System.out.println(Arrays.toString(OurFileHandler.reader()[i]));
+                System.out.println(Integer.toString(i+1) + Arrays.toString(OurFileHandler.reader()[i]));
             }
+            System.out.println("to play choose a number");
+            playChosen();
         }
         if (c==2) {
             addMusic();
