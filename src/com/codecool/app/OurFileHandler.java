@@ -38,12 +38,41 @@ public class OurFileHandler {
     }
 
     public static Map reader() throws FileNotFoundException {
-        BufferedReader read = new BufferedReader(new FileReader(file));
-        Scanner linesok = new Scanner (file);
-        Scanner readd;
-        String line;
-        String title, link;
-        int counter =0;
+        StringBuilder sb = new StringBuilder();
+		BufferedReader br = null;
+		try {
+		    br = new BufferedReader(new FileReader("text.txt"));
+		    String line;
+		    while ((line = br.readLine()) != null) {
+		        if (sb.length() > 0) {
+		            sb.append("\n");
+		        }
+		        sb.append(line);
+		    }
+		} catch (IOException e) {
+		    e.printStackTrace();
+		} finally {
+		    try {
+		        if (br != null) {
+		            br.close();
+		        }
+		    } catch (IOException ex) {
+		        ex.printStackTrace();
+		    }
+		}
+		String contents = sb.toString();
+
+    		try {
+		   String[] array = contents.split(";");
+		   String [][] songData = new String[array.length][3];
+		   for (int i = 0; i < array.length; i++) {
+			songData[i] = array[i].split(",");
+			
+			
+		   	
+		   }
+		}
+	}
 
 
 
