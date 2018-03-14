@@ -14,6 +14,7 @@ public class Main {
 		int choice = menuChoice.nextInt();
 		switch (choice) {
 			case 1:
+				listMusic();
 				break;
 			case 2:
 				addMusic();
@@ -32,5 +33,8 @@ public class Main {
 		System.out.println("Give the category: ");
 		String category = getData.nextLine();
 		System.out.println("Song created in database!");
+	}
+	public static void listMusic() {
+		
 	}
 }
