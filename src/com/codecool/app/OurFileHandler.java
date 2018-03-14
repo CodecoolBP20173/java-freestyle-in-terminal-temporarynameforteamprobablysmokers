@@ -10,11 +10,12 @@ public class OurFileHandler {
    // private static File file = new File(path);
 
     private static final String FILENAME = "music.txt";
-    public static void writer(String stringToTxt) throws FileNotFoundException {
+
+    public static void writer(Song song) throws FileNotFoundException {
         BufferedWriter bw = null;
 	FileWriter fw = null;
 	try {
-		String content = stringToTxt;
+		String content = Song.txtReadyString(song.getTitle(), song.getLink(), song.getArtist());
 		fw = new FileWriter(FILENAME, true);
 		bw = new BufferedWriter(fw);
 		bw.write(content);
@@ -37,11 +38,11 @@ public class OurFileHandler {
         //writer.close();
     }
 
-    public static Map reader() throws FileNotFoundException {
+    public static String[][] reader() throws FileNotFoundException {
         StringBuilder sb = new StringBuilder();
 		BufferedReader br = null;
 		try {
-		    br = new BufferedReader(new FileReader("text.txt"));
+		    br = new BufferedReader(new FileReader("music.txt"));
 		    String line;
 		    while ((line = br.readLine()) != null) {
 		        if (sb.length() > 0) {
@@ -67,38 +68,20 @@ public class OurFileHandler {
 		   String [][] songData = new String[array.length][3];
 		   for (int i = 0; i < array.length; i++) {
 			songData[i] = array[i].split(",");
-			
-			
-		   	
-		   }
-		}
+			}
+			return songData;
+		} catch (Exception e) {
+                e.printStackTrace();
+            } return null;
 	}
 
 
 
 
-        try {
-            while (linesok.hasNext()) {
-                counter++;
-                line = read.readLine();
-
-                readd = new Scanner(line);
-                readd.useDelimiter(",");
-
-                title = readd.next();
-                link = readd.next();
 
 
-                Song.objectList.put(title, new Song(title, link));
-                System.out.println(title + " " + link);
-            }
 
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return Song.objectList;
     }
 
 
-}
+

@@ -15,7 +15,7 @@ public class Song {
     public Song(String title, String link, String artist) {
         this.title = title;
         this.link = link;
-	this.artist = artist;
+	    this.artist = artist;
     }
 
     public String getTitle() {
@@ -42,12 +42,9 @@ public class Song {
         this.artist = artist;
     }
 
-    public String txtReadyString(String link, String title, String Artist) {
-	this.artist = artist;
-        this.link = link;
-	this.title = title;
-	stringToTxt = link + "," + title + "," + artist + ";";
-	return stringToTxt;
+    public static String txtReadyString(String link, String title, String artist) {
+        return link + "," + title + "," + artist + ";";
+
 
     }
 }
