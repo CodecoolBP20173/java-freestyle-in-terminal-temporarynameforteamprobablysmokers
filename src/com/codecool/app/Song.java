@@ -6,7 +6,6 @@ import java.util.TreeMap;
 public class Song {
     private String title;
     private String  link;
-    private Category category;
     private int vote;
 
     private String  artist;

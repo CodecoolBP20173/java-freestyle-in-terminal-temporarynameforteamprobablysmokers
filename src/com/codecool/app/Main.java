@@ -25,11 +25,10 @@ public class Main {
     public static void playChosen() throws FileNotFoundException {
         Scanner getData = new Scanner(System.in);
         int chosen = getData.nextInt();
-        Mediaplayer.main(OurFileHandler.reader()[chosen]);
+        Mediaplayer.main(OurFileHandler.reader()[chosen - 1]);
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        OurFileHandler.writer(new Song("babydonthurtme", "www.www", "britney"));
         System.out.println("dizajn");
         System.out.println("1. list all songs");
         System.out.println("2. Add song");
