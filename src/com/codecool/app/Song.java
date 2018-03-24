@@ -7,8 +7,8 @@ public class Song {
     private String title;
     private String  link;
     private int vote;
-
     private String  artist;
+
     public static Map<String,Song> objectList = new TreeMap<>();
 
     public Song(String title, String link, String artist) {
@@ -43,7 +43,5 @@ public class Song {
 
     public static String txtReadyString(String link, String title, String artist) {
         return link + "," + title + "," + artist + ";";
-
-
     }
 }
