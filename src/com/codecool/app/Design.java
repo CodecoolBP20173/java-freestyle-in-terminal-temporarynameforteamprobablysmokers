@@ -21,12 +21,14 @@ public class Design {
         terminal.resetStyle();
     }
 
+
     public static void playList() {
         for (int i = 0; i < OurFileHandler.reader().length; i++) {
             String listElement = ("                " + Integer.toString(i + 1) + ". " + OurFileHandler.reader()[i][2] + " " + OurFileHandler.reader()[i][0] + " ////// Votes: " + OurFileHandler.reader()[i][3]);
-            System.out.println(listElement + String.format("%"+(LINELENGTH-(LINELENGTH-listElement.length())-11)+"s", ""));
+            System.out.println(listElement + String.format("%-"+(LINELENGTH-(listElement.length()))+"s", ""));
         }
     }
+
 
     public static String[] graphics() {
         String woofer = String.join("\n"
@@ -35,7 +37,6 @@ public class Design {
                 , "║██║♫♪   |    |______ |  |  | |            __|   |_____| |    \\_ |______ |_____] |_____| _/   \\_♫♪ ║██║"
                 , "║ ◎♫♪♫                                                                                           ♪♫◎♫ ║"
                 , "╚══╝                                                                                               ╚══╝");
-
 
         String hifi = String.join("\n"
         ,"                                                                      ░░█▀▀▀▀▀▀▀▀▀▀▀▀▀▀█               "

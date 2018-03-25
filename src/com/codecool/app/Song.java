@@ -6,7 +6,6 @@ import java.util.TreeMap;
 public class Song {
     private String title;
     private String  link;
-    private int vote;
     private String  artist;
 
     public static Map<String,Song> objectList = new TreeMap<>();
@@ -41,7 +40,7 @@ public class Song {
         this.artist = artist;
     }
 
-    public static String txtReadyString(String link, String title, String artist) {
-        return link + "," + title + "," + artist + ";";
+    public static String txtReadyString(String link, String title, String artist, int vote) {
+        return link + "," + title + "," + artist + "," + vote + ";";
     }
 }
