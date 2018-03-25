@@ -27,26 +27,37 @@ public class Main {
         Mediaplayer.main(OurFileHandler.reader()[chosen - 1]);
     }
 
+    public static void defScreenTerminal() {
+        Terminal terminal = new Terminal();
+        terminal.moveTo(0,0);
+        terminal.clearScreen();
+    }
+
     public static void main(String[] args) throws FileNotFoundException {
         while (true) {
-            System.out.println("dizajn");
-            Terminal terminal = new Terminal();
-            terminal.clearScreen();
-            System.out.println("1. List all songs");
-            System.out.println("2. Add song to Temp Music Database\n");
-            Scanner choice = new Scanner(System.in);
-            int c = choice.nextInt();
-            if (c == 1) {
-
-                for (int i = 0; i < OurFileHandler.reader().length; i++) {
-                    System.out.println(Integer.toString(i + 1) + ". " + Arrays.toString(OurFileHandler.reader()[i]) + "\n");
+            defScreenTerminal();
+            String[] mainOptions = {"1. List all songs","2. Add song to Temp JukeBox"};
+            Design.mainMenuDesign(mainOptions);
+            try {
+                Scanner choice = new Scanner(System.in);
+                System.out.println("Please choose from the selection above: ");
+                int c = choice.nextInt();
+                if (c == 1) {
+                    try {
+                        defScreenTerminal();
+                        String[] playOption = {"Choose a song or 'q' to quit: "};
+                        Design.mainMenuDesign(playOption);
+                        playChosen();
+                    } catch (IndexOutOfBoundsException i) {
+                        i.printStackTrace();
+                    }
                 }
-                System.out.println("Choose a number to play the song:\n");
-                playChosen();
-            }
-            if (c == 2) {
-                addMusic();
+                if (c == 2) {
+                    addMusic();
 
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

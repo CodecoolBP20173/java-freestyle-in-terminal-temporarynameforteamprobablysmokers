@@ -8,7 +8,7 @@ class Mediaplayer{
 			ProcessBuilder pb=new ProcessBuilder("cvlc", "--global-key-quit=-","--no-video", args[1]);
 			pb.start();
 		} catch (Exception e){
-			System.out.println(e);
+			e.printStackTrace();
 		}
 	}
 }
