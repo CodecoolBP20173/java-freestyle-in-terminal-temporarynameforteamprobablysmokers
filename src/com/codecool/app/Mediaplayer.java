@@ -1,6 +1,5 @@
 package com.codecool.app;
 
-import java.util.*;
 
 class Mediaplayer{
 	public static void main(String args[]){

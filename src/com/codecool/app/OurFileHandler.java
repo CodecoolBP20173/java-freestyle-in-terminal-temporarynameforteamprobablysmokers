@@ -1,13 +1,11 @@
 package com.codecool.app;
 
 import java.io.*;
-import java.util.Map;
-import java.util.Scanner;
 
 
 public class OurFileHandler {
 
-    private static final String FILENAME = "music.txt";
+    private static final String FILENAME = "/home/gergelyk89/codecool/1TWJava/java-freestyle-in-terminal-temporarynameforteamprobablysmokers/src/music.txt";
 
     public static void writer(String content, Boolean append) {
         BufferedWriter bw = null;
@@ -31,8 +29,14 @@ public class OurFileHandler {
     }
 
     public static void voteWriter(String[][] songData) {
-		for (String[] songDetails : songData) {
-			writer(Song.txtReadyString(songDetails[0], songDetails[1], songDetails[2], Integer.parseInt(songDetails[3])), false);
+        try {
+            new PrintWriter(FILENAME).close();
+        }
+        catch (FileNotFoundException f) {
+            f.printStackTrace();
+        }
+		for (int i = 0; i < songData.length; i++) {
+			writer(Song.txtReadyString(songData[i][0], songData[i][1], songData[i][2], Integer.parseInt(songData[i][3])), true);
 		}
 	}
 
@@ -40,7 +44,7 @@ public class OurFileHandler {
         StringBuilder sb = new StringBuilder();
 		BufferedReader br = null;
 		try {
-		    br = new BufferedReader(new FileReader("music.txt"));
+		    br = new BufferedReader(new FileReader(FILENAME));
 		    String line;
 		    while ((line = br.readLine()) != null) {
 		        if (sb.length() > 0) {
@@ -72,14 +76,7 @@ public class OurFileHandler {
 		}
 		return null;
 	}
-
-
-
-
-
-
-
-    }
+}
 
 
 
