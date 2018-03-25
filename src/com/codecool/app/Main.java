@@ -6,6 +6,8 @@ import com.codecool.termlib.Terminal;
 
 public class Main {
 
+    private static int LINELENGTH = 103;
+
     public static void addMusic() {
         Scanner getData = new Scanner(System.in);
         System.out.println("Give the performer: ");
@@ -33,7 +35,10 @@ public class Main {
                 chosen = getData.nextInt();
             }
             Mediaplayer.main(OurFileHandler.reader()[chosen - 1]);
-            System.out.println("Do you like this song? (y or n)");
+            defScreenTerminal();
+            System.out.println();
+            String[] playOption = {"Now Playing: " + songData[chosen-1][2] + " - " + songData[chosen-1][0], String.format("%"+(LINELENGTH-20)+"s", ""), "Choose a song or 'q' to quit: "};
+            Design.mainMenuDesign(playOption);
         } catch (NullPointerException n) {
             n.printStackTrace();
         }
@@ -49,12 +54,14 @@ public class Main {
 
 
     public static void voteSong(String[][] songData, Scanner choice, Integer chosenSong) {
+        System.out.println("Do you like this song? (y or n)");
         String vote = choice.next();
         int voteInt = Integer.parseInt(songData[chosenSong-1][3]);
         if (vote.equals("y")) {
             voteInt += 1;
             songData[chosenSong-1][3] = String.valueOf(voteInt);
             OurFileHandler.voteWriter(songData);
+            listPlayer(songData, choice);
         } else if (vote.equals("n")) {
             voteInt -= 1;
             int updateIndex = 0;
@@ -68,11 +75,11 @@ public class Main {
                         updatedSongData[updateIndex] = songData[i];
                         updateIndex++;
                     }
-
                 }
                 songData = updatedSongData;
             }
             OurFileHandler.voteWriter(songData);
+            listPlayer(songData, choice);
         }
     }
 
@@ -81,7 +88,7 @@ public class Main {
         if (songData.length != 0) {
             try {
                 defScreenTerminal();
-                String[] playOption = {"Choose a song or 'q' to quit: "};
+                String[] playOption = {"Choose a song or 'q' to quit: ", "When a song is playing, you can stop it with '-'."};
                 Design.mainMenuDesign(playOption);
                 int chosenSong = playChosen(songData);
                 voteSong(songData, choice, chosenSong);
@@ -97,16 +104,18 @@ public class Main {
     public static void main(String[] args) {
         while (true) {
             defScreenTerminal();
-            String[] mainOptions = new String[3];
+            String[] mainOptions = new String[4];
             String[][] songData = OurFileHandler.reader();
             if (songData[0].length < 4) {
-                mainOptions[0] = "No songs yet :(";
-                mainOptions[1] = "2. Add song to Temp JukeBox";
-                mainOptions[2] = "3. Exit";
+                mainOptions[0] = "Temporary JukeBox - songs only exist until votes are positive";
+                mainOptions[1] = "No songs yet :(";
+                mainOptions[2] = "2. Add song to Temp JukeBox";
+                mainOptions[3] = "3. Exit";
             } else {
-                mainOptions[0] = "1. List all songs";
-                mainOptions[1] = "2. Add song to Temp JukeBox";
-                mainOptions[2] = "3. Exit";
+                mainOptions[0] = "Temporary JukeBox - songs only exist until votes are positive";
+                mainOptions[1] = "1. List all songs";
+                mainOptions[2] = "2. Add song to Temp JukeBox";
+                mainOptions[3] = "3. Exit";
             }
             Design.mainMenuDesign(mainOptions);
             try {
@@ -114,7 +123,11 @@ public class Main {
                 System.out.println("Please choose from the selection above: ");
                 int c = choice.nextInt();
                 if (c == 1) {
-                    listPlayer(songData, choice);
+                    if (songData[0].length < 4) {
+                        continue;
+                    } else {
+                        listPlayer(songData, choice);
+                    }
                 }
                 if (c == 2) {
                     addMusic();
