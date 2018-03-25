@@ -41,7 +41,7 @@ public class Song {
         this.artist = artist;
     }
 
-    public static String txtReadyString(String link, String title, String artist) {
-        return link + "," + title + "," + artist + ";";
+    public static String txtReadyString(String link, String title, String artist, int vote) {
+        return link + "," + title + "," + artist + "," + vote + ";";
     }
 }

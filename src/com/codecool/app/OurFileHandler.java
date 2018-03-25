@@ -9,12 +9,11 @@ public class OurFileHandler {
 
     private static final String FILENAME = "music.txt";
 
-    public static void writer(Song song) {
+    public static void writer(String content, Boolean append) {
         BufferedWriter bw = null;
 		FileWriter fw = null;
 		try {
-			String content = Song.txtReadyString(song.getTitle(), song.getLink(), song.getArtist());
-			fw = new FileWriter(FILENAME, true);
+			fw = new FileWriter(FILENAME, append);
 			bw = new BufferedWriter(fw);
 			bw.write(content);
 		} catch (IOException e) {
@@ -30,6 +29,12 @@ public class OurFileHandler {
 			}
 		}
     }
+
+    public static void voteWriter(String[][] songData) {
+		for (String[] songDetails : songData) {
+			writer(Song.txtReadyString(songDetails[0], songDetails[1], songDetails[2], Integer.parseInt(songDetails[3])), false);
+		}
+	}
 
     public static String[][] reader() {
         StringBuilder sb = new StringBuilder();
