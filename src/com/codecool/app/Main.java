@@ -17,7 +17,7 @@ public class Main {
         System.out.println("Type in the youtube link: ");
         String link = getData.nextLine();
         Song a = new Song(title, link, performer);
-        String content = Song.txtReadyString(a.getTitle(), a.getLink(), a.getArtist(), 5);
+        String content = Song.txtReadyString(a.getTitle(), a.getLink(), a.getArtist(), 0);
         OurFileHandler.writer(content, true);
         System.out.println("Song created in database!");
     }
