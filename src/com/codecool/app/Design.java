@@ -12,9 +12,11 @@ public class Design {
         terminal.setColor(Color.YELLOW);
         System.out.println(logo);
         for (int i = 0; i < menuOptions.length; i++) {
-            System.out.println(String.format("          "+"%-"+(LINELENGTH-menuOptions[0].length())/2+"s", menuOptions[i])+String.format("%"+(LINELENGTH-(LINELENGTH-menuOptions[0].length())/2-10)+"s", ""));
+            String lineString = String.format("          "+menuOptions[i]+String.format("%"+(LINELENGTH-menuOptions[i].length()-10)+"s", ""));
+            System.out.println(lineString);
         }
-        if (menuOptions.length < 2) {
+        if (menuOptions.length < 4) {
+            System.out.println(String.format("%"+LINELENGTH+"s", ""));
             playList();
         }
         System.out.println(hifi);
